@@ -8,7 +8,7 @@ def loadData(path):
     data = json.load(json_file)
   return data
 
-def createMask(image, data):
+def createMasks(image, data):
   mask = np.zeros(image.shape[0:2], dtype=np.uint8)
 
   for elem in data:
@@ -26,7 +26,7 @@ data = loadData('tags/Products-Poly.json')
 
 for img in data:
   image = cv2.imread('images/'+img['image'],0)
-  mask = createMask(image, img['tags'])
+  masks = createMasks(image, img['tags'])
 
   plt.imshow(mask)
   plt.show()
