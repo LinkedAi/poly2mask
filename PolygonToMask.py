@@ -9,24 +9,27 @@ def loadData(path):
   return data
 
 def createMasks(image, data):
-  mask = np.zeros(image.shape[0:2], dtype=np.uint8)
+  masks =  []
 
   for elem in data:
+    mask = np.zeros(image.shape[0:2], dtype=np.uint8)
     arr = np.zeros((len(elem['pos']), 2))
     for i, p in enumerate(elem['pos']):
       #np.append(arr, [[p['x'], p['y']]])
       arr[i,0] = int(round(p['x']))
-      arr[i,1] = int(round(p['y']))]
+      arr[i,1] = int(round(p['y']))
 
     cv2.drawContours(mask, [arr.astype(np.int32)], -1, (255, 255, 255), -1, cv2.LINE_AA)
-  
-  return mask
+    masks.append(mask)
+
+  return np.array(masks)
 
 data = loadData('tags/Products-Poly.json')
 
 for img in data:
   image = cv2.imread('images/'+img['image'],0)
   masks = createMasks(image, img['tags'])
+  print(masks)
 
-  plt.imshow(mask)
+  plt.imshow(masks[0])
   plt.show()
