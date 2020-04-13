@@ -27,7 +27,7 @@ def createMasks(image, data):
   return np.array(masks)
 
 # Load Data from downloaded JSON
-data = loadData('tags/Person-mask.json')
+data = loadData('tags/example-mask.json')
 
 # For all the image get the masks for each label
 for img in data:
@@ -41,7 +41,7 @@ for img in data:
     continue
 
   for i, mask in enumerate(masks):
-    cv2.imwrite('results/' + str(i) + img['image'], mask)
+    cv2.imwrite('results/' +  img['tags'][0]['name'] + '_' + str(i) + '_' + img['image'], mask)
 
   plt.imshow(masks[0])
   plt.show()

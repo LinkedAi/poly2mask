@@ -2,6 +2,8 @@
 
 Convert your LinkedAI polygons in to image masks.
 
+![Segmentation example](/results/Person_0_people.jpg)
+
 Place the images in the *images* folder and the json file in the *tags* folder.
 
 ## Instanse Segmentation
@@ -9,7 +11,7 @@ For this type of segmentation we are going to generate one mask for each label i
 `[class name]_[index of tag]_[image name].jpg`
 
 The `PolygonToMask.py` script generate this masks, to set the script to work with your own labels, change line 30:
-`data = loadData('tags/Person-mask.json')`
+`data = loadData('tags/example-mask.json')`
 to
 `data = loadData('tags/[your labels file].json')`
 
