@@ -2,7 +2,7 @@
 
 Convert your LinkedAI polygons in to image masks.
 
-![Segmentation example](/results/Person_0_people.jpg)
+![Segmentation example](/results/Person_0_people.png)
 
 Place the images in the *images* folder and the json file in the *tags* folder.
 

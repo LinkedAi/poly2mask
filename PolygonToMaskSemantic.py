@@ -46,5 +46,5 @@ for img in data:
 
   cv2.imwrite('results/' + 'mask_' + name + '.png', mask)
 
-  plt.imshow(mask[0])
+  plt.imshow(mask)
   plt.show()

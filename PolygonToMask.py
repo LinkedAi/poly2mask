@@ -1,3 +1,4 @@
+import os
 import cv2
 import json
 import numpy as np
@@ -40,8 +41,9 @@ for img in data:
   if (len(masks) == 0):
     continue
 
+  name  = os.path.splitext(img['image'])[0]
   for i, mask in enumerate(masks):
-    cv2.imwrite('results/' +  img['tags'][0]['name'] + '_' + str(i) + '_' + img['image'], mask)
+    cv2.imwrite('results/' +  img['tags'][0]['name'] + '_' + str(i) + '_' + name + '.png', mask)
 
   plt.imshow(masks[0])
   plt.show()
