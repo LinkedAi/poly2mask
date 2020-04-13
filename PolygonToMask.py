@@ -31,11 +31,14 @@ data = loadData('tags/Products-Poly.json')
 
 # For all the image get the masks for each label
 for img in data:
-  image = cv2.imread('images/'+img['image'],0)
+  image = cv2.imread('images/' + img['image'],0)
   masks = createMasks(image, img['tags'])
   
   if (len(masks) == 0):
     continue
+
+  for i, mask in enumerate(masks):
+    cv2.imwrite('results/' + str(i) + img['image'], mask)
 
   plt.imshow(masks[0])
   plt.show()
