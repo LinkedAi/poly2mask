@@ -3,11 +3,13 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Read json file from a given path
 def loadData(path):
   with open(path) as json_file:
     data = json.load(json_file)
   return data
 
+# with the image and the json get all the mask for each label in the same image
 def createMasks(image, data):
   masks =  []
 
@@ -24,12 +26,16 @@ def createMasks(image, data):
 
   return np.array(masks)
 
+# Load Data from downloaded JSON
 data = loadData('tags/Products-Poly.json')
 
+# For all the image get the masks for each label
 for img in data:
   image = cv2.imread('images/'+img['image'],0)
   masks = createMasks(image, img['tags'])
-  print(masks)
+  
+  if (len(masks) == 0):
+    continue
 
   plt.imshow(masks[0])
   plt.show()
