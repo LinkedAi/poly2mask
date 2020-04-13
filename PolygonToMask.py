@@ -16,19 +16,12 @@ def createMasks(image, data):
   for elem in data:
     mask = np.zeros(image.shape[0:2], dtype=np.uint8)
     arr = np.zeros((len(elem['pos']), 2))
-    print(mask.shape)
+
     for i, p in enumerate(elem['pos']):
-      if (i==0):
-        print(p)
-      #np.append(arr, [[p['x'], p['y']]])
       arr[i,0] = int(round(p['x']))
       arr[i,1] = int(round(p['y']))
 
-    #print(arr.astype(np.int32))
-    print(arr[0])
-    
-
-    cv2.drawContours(mask, [arr.astype(np.int32)], 0, (255, 255, 255), -1, cv2.LINE_AA)
+    cv2.drawContours(mask, [arr.astype(np.int32)], -1, (255, 255, 255), -1, cv2.LINE_AA)
     masks.append(mask)
 
   return np.array(masks)
