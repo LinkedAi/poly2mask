@@ -16,7 +16,7 @@ def create_mask(image, data, classes):
 
   for elem in data:
     if elem['type'] != 'polygon':
-            continue
+      continue
     arr = np.zeros((len(elem['pos']), 2))
 
     for i, p in enumerate(elem['pos']):
@@ -41,13 +41,9 @@ for img in data:
 
   plt.imshow(image)
   plt.show()
-  
-  if (len(masks) == 0):
-    continue
 
   name  = os.path.splitext(img['image'])[0]
-  for i, mask in enumerate(masks):
-    cv2.imwrite('results/' +  img['tags'][0]['name'] + '_' + str(i) + '_' + name + '.png', mask)
+  cv2.imwrite('results/' +  img['tags'][0]['name'] + '.png', mask)
 
-  plt.imshow(masks[0])
+  plt.imshow(mask)
   plt.show()
